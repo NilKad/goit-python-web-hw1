@@ -3,14 +3,12 @@ from rich.console import Console
 from rich.table import Table
 
 from notes.note import Note
+from notes.note_list_abstract import NoteListAbstract
 
 
-class Notes:
-    # __id = 0
-
+class NoteList(NoteListAbstract):
     def __init__(self):
-        self.__id = 0
-        self.data = []
+        super().__init__()
 
     def add(self, args):
         note = Note(args)

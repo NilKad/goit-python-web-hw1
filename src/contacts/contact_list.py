@@ -5,6 +5,8 @@ from contacts.contact import Contact
 from rich.console import Console
 from rich.table import Table
 
+from contacts.contacts_list_abstract import ContactListAbstracts
+
 # from contact import Record
 # from collections import UserDict
 # from contact import Contact
@@ -12,10 +14,9 @@ from rich.table import Table
 # from contact import FirstName, LastName, Email, Phone, Birthday, Address, Record
 
 
-class Contacts:
+class ContactList(ContactListAbstracts):
     def __init__(self):
-        self.data = []
-        self.id = 0
+        super().__init__()
 
     def find_by_id(self, id):
         id = id["id"]

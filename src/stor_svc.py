@@ -1,6 +1,6 @@
 import os
-from contacts.contacts import Contacts
-from notes.notes import Notes
+from contacts.contact_list import ContactList
+from notes.notes import NoteList
 from save_load.save_load import (
     storage_load_file,
     storage_load_file_new,
@@ -24,9 +24,9 @@ __structure_class_new = {"stor": {"id": int, "data": ["record1", "record2"]}}
 
 
 my_storage = {}
-my_stor_contacts = Contacts()
+my_stor_contacts = ContactList()
 my_stor_contacts_path = "storage_contacts_new.bin"
-my_storage_list = {Notes: "storage_notes.bin", Contacts: "storage_contacts.bin"}
+my_storage_list = {NoteList: "storage_notes.bin", ContactList: "storage_contacts.bin"}
 
 
 # print(my_storage)

@@ -1,91 +1,9 @@
-from contacts.address import Address
-from contacts.birthday import Birthday
-from contacts.email_cl import Email_str
-from contacts.first_name import First_name
-from contacts.last_name import Last_name
-from contacts.phone import Phone
+from contacts.contact_abstract import ContactAbstact
 
 
-class Contact:
-
+class Contact(ContactAbstact):
     def __init__(self, args, id):
-        self.__id = id
-        self.__phones = set()
-        for key, value in args.items():
-            self.__setattr__(key, value)
-
-        # self.first_name = First_name(args["first_name"])
-        # self.last_name = Last_name(args["last_name"])
-        # self.birthday = Birthday(args["birthday"])
-        # self.address = Address(args["address"])
-        # self.email = Email_str(args["email"])
-        # self.phones = set().update(args["phones"])
-
-    @property
-    def first_name(self):
-        return self.__first_name
-
-    @first_name.setter
-    def first_name(self, value):
-        self.__first_name = First_name(value)
-
-    @property
-    def last_name(self):
-        return self.__last_name
-
-    @last_name.setter
-    def last_name(self, value):
-        self.__last_name = Last_name(value)
-
-    @property
-    def address(self):
-        return self.__address
-
-    @address.setter
-    def address(self, value):
-        self.__address = Address(value)
-
-    @property
-    def birthday(self):
-        return self.__birthday
-
-    @birthday.setter
-    def birthday(self, value):
-        self.__birthday = Birthday(value)
-
-    @property
-    def email(self):
-        return self.__email
-
-    @email.setter
-    def email(self, value):
-        self.__email = Email_str(value)
-
-    @property
-    def phones(self):
-        def __str__(self):
-            res = set()
-            for el in self.__phones:
-                res.add(str(el))
-            return res
-
-        return __str__(self)
-
-    @phones.setter
-    def phones(self, value):
-        phone_in_set = str(self.phones)
-        for el in value:
-            print("----Phone: ", el)
-            if el not in phone_in_set:
-                self.__phones.add(Phone(el))
-
-    @property
-    def id(self):
-        return self.__id
-
-    @id.setter
-    def _id(self, id):
-        self.__id = id
+        super().__init__(args, id)
 
     def update_all(self, args):
         if "id" in args:
@@ -102,13 +20,11 @@ class Contact:
         old_phone = args["phone_src"]
         new_phone = args["phone_dst"]
         for el in self.__phones:
-            # print(f"el type: {type(el)}")
             if old_phone == el.value:
                 el.value = new_phone
         return self
 
     def del_phone(self, args):
-        # ph_list = args['phones']
         for x in args["phones"]:
             for el in self.__phones:
                 if x == el.value:
@@ -125,5 +41,4 @@ class Contact:
 
     def __str__(self):
         res = f"{self.id}\t{self.first_name} {self.last_name}\t phones: { self.phones}\temail: {self.email} address: {self.address}\t birthday: {self.birthday} "
-        # res = f'{self.id}\t{self.first_name} {self.last_name}\t phones: {'; '.join(p.value for p in self.phones)}\temail: {self.email} address: {self.address}\t birthday: {self.birthday} '
         return res
